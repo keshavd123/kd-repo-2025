@@ -11,6 +11,6 @@ resource "aws_instance" "example" {
 
 resource "local_file" "ec2_ip_file" {
   content  = aws_instance.example.public_ip
-  filename = "ec2_public_ip.txt"
+  filename = "${path.module}/ec2_public_ip.txt"
 
 }
