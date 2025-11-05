@@ -12,13 +12,18 @@ jobs:
   test-job:
     runs-on:  ubuntu-latest
     steps:
+# calling for github action to clone my local branch
+    - name: taking code from my repo
+      uses: actions/checkout@v5
+      with:
+        ref: dryrun-aws-kd
+
     - name: testing github actions
       run:  |
         echo "Hello World"
         git version
         whoami
         ls -a
-        sudo apt update && sudo apt upgrade -y
-        sudo apt install terraform
         terraform version
         docker version
+
