@@ -27,3 +27,4 @@ jobs:
         git version
         whoami
         ls -a
+        terraform version
