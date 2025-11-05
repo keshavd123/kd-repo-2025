@@ -8,8 +8,22 @@ resource "aws_instance" "example" {
     tags = {
         "Name" = var.vm-name 
     }
+    provisioner "remote-exec" {
+      inline = [ 
+        "sudo dnf install git httpd -y",
+        "mkdir -p hello/terraform"
+       ]
+      
+    }
+    connection {
+        type = "ssh"
+        user = "ec2-user"
+        host = self.public_ip
+        private_key = tls_private_key.rsa_key_4096.private_key_pem
+    }
   
 }
+
 
 
 resource "local_file" "ec2_ip_file" {
