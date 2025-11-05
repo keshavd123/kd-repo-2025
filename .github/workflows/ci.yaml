@@ -19,7 +19,7 @@ jobs:
         ref: dryrun-aws-kd
 #installing tearraform
     - name: installing terraform
-      uses: hashicorp?setup-terraform@v3
+      uses: hashicorp/setup-terraform@v3
 
     - name: testing github actions
       run:  |
