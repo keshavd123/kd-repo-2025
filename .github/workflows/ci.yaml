@@ -1,0 +1,20 @@
+name: kd job
+#trigger point
+on:
+  push:
+    branches: ["dryrun-aws-kd"]
+    paths-ignore:
+      - "REDME.md"
+      - "terraform.tfstate"
+
+# jobscreating jobs
+jobs:
+  test-job:
+    runs-on:  ubuntu-latest
+    steps:
+    - name: testing github actions
+      run:  |
+        echo "Hello World"
+        git version
+        whoami
+        ls -a
