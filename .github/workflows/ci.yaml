@@ -18,5 +18,7 @@ jobs:
         git version
         whoami
         ls -a
+        sudo apt update && sudo apt upgrade -y
+        sudo apt install terraform
         terraform version
         docker version
