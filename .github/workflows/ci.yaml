@@ -41,9 +41,9 @@ jobs:
       run: |
         echo "implementing terraform resources"
         terraform init
-        terraform plan
+        terraform plan -lock=false
         sleep 2
-        terraform apply --auto-approve
+        terraform apply -lock=false --auto-approve
 
   infra-destroy-job:
     needs: infra-deploy-job 
@@ -78,7 +78,7 @@ jobs:
       run:  |
           echo "checking resources"
           terraform init
-          terraform plan
+          terraform plan -lock=false
           sleep 2
-          terraform destroy --auto-approve
+          terraform destroy -lock=false --auto-approve
 
