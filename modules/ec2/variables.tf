@@ -32,3 +32,15 @@ variable "file-perm" {
 variable "aws-pair-key-name" {
   type = string
 }
+
+variable "my-vpc-id" {
+  
+}
+
+variable "my-sec-group" {
+  
+}
+
+variable "vmcount" {
+  
+}

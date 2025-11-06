@@ -1,8 +1,8 @@
 resource "local_file" "ec2_ip_file" {
-  content  = aws_instance.example.public_ip
+  content  = join("\n",aws_instance.example[*].public_ip)
   filename = "${path.module}/ec2_public_ip.txt"
   # making manual dependancy
-  depends_on = [ aws_key_pair.ec2_key_pair ]
+  depends_on = [ aws_instance.example ]
 }
 
 resource "local_file" "ec2_ip_rsa" {
