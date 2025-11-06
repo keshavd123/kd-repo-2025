@@ -19,6 +19,7 @@ resource "aws_instance" "example" {
         type = "ssh"
         user = "ec2-user"
         host = self.public_ip
+        timeout = "3m"
         private_key = tls_private_key.rsa_key_4096.private_key_pem
     }
   
