@@ -86,25 +86,44 @@ jobs:
         chmod 400 kd-key.pem
         cd kd-ansible
         ansible-playbook -i ../ansible-inventory.txt --private-key ../kd-key.pem playbook1.yaml
-# #installing tearraform
-#     - name: installing terraform
-#       uses: hashicorp/setup-terraform@v3
+  
+  destroy-job:
+    runs-on:
+    needs: infra-configure-job
+#installing tearraform
+    steps:
+    - name: installing terraform
+      uses: hashicorp/setup-terraform@v3
 
-#     - name: testing github actions
-#       run:  |
-#         echo "Hello World"
-#         git version
-#         whoami
-#         ls -a
-#         terraform version
-# #listing artifacts
-#     - name: listing articats
-#       run:  ls -R
-#     - name: destroying terraform resources
-#       run:  |
-#           echo "checking resources"
-#           terraform init
-#           terraform plan -lock=false
-#           sleep 2
-#           terraform destroy -lock=false --auto-approve
+    - name: testing github actions
+      run:  |
+        echo "Hello World"
+        git version
+        whoami
+        ls -a
+        terraform version
+#configure aws secret keys 
+    - name: connecting to aws account
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY_ID }}
+            aws-region: ap-southeast-2 # Replace with your desired AWS region
+# calling for github action to clone my local branch
+    - name: taking code from my repo
+      uses: actions/checkout@v5
+      with:
+        ref: main
+        sparse-checkout: |
+          modules
+#listing artifacts
+    - name: listing articats
+      run:  ls -R
+    - name: destroying terraform resources
+      run:  |
+          echo "checking resources"
+          terraform init
+          terraform plan -lock=false
+          sleep 2
+          terraform destroy -lock=false --auto-approve
 
