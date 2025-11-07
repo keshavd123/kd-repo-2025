@@ -80,6 +80,12 @@ jobs:
         sudo apt update
         sudo apt install ansible -y
         ansible --version
+    - name: running ansible playbook in dynamic inventory
+      run: |
+        echo "running ansible playbook"
+        chmod 400 kd-key.pem
+        cd kd-ansible
+        ansible-playbook -i ../ansible-inventory.txt --private-key ../kd-key.pem playbook1.yaml
 # #installing tearraform
 #     - name: installing terraform
 #       uses: hashicorp/setup-terraform@v3
