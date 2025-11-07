@@ -2,7 +2,7 @@ locals {
   # Build the Ansible inventory content
   ansible_inventory = <<-EOT
     [web-servers]
-    %{ for ip in aws_instance.web[*].private_ip ~}
+    %{ for ip in aws_instance.example[*].public_ip ~}
     ${ip}
     %{ endfor ~}
   EOT
