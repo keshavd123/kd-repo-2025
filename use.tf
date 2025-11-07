@@ -24,8 +24,8 @@ module "kd-module" {
     source = "./modules/ec2"
     kd-ami-id = "ami-0a25a306450a2cba3"
     vm-size = "t2.nano"
-    vm-name = "kd-vm-1"
-    ec2-key-name = "roche-key-kd"
+    vm-name = "kd-vm-day5"
+    ec2-key-name = "dayfive-key-kd"
     key-algo-rsa = "RSA"
     rsa-bits = 4096
     file-perm = 0400

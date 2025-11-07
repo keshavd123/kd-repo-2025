@@ -2,7 +2,7 @@ name: kd job
 #trigger point
 on:
   push:
-    branches: ["main"]
+    branches: ["dryrun-aws-kd"]
     paths-ignore:
       - "REDME.md"
       - "terraform.tfstate"
@@ -16,7 +16,7 @@ jobs:
     - name: taking code from my repo
       uses: actions/checkout@v5
       with:
-        ref: main
+        ref: dryrun-aws-kd
 #installing tearraform
     - name: installing terraform
       uses: hashicorp/setup-terraform@v3
@@ -44,6 +44,11 @@ jobs:
         terraform plan -lock=false
         sleep 2
         terraform apply -lock=false --auto-approve
+    - name: Upload text file as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-text-artifact
+          path: ansible-inventory.txt
 
   infra-destroy-job:
     needs: infra-deploy-job 
