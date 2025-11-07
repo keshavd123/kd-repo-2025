@@ -2,7 +2,7 @@ name: kd job
 #trigger point
 on:
   push:
-    branches: ["main"]
+    branches: [" main "]
     paths-ignore:
       - "REDME.md"
       - "terraform.tfstate"
