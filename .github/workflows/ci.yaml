@@ -79,6 +79,14 @@ jobs:
             aws-region: ap-southeast-2 # Replace with your desired AWS region
     - name: checking connection
       run: aws s3 ls
+# downloading articats for ansible
+    - name: downloading articats
+      uses: actions/download-articat@v5
+      with:
+        name: kd-text-artifact
+#listing artifacts
+    - name: listing articats
+      run:  ls -R
     - name: destroying terraform resources
       run:  |
           echo "checking resources"
