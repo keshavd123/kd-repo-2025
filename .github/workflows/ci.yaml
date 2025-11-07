@@ -45,8 +45,8 @@ jobs:
         sleep 2
         terraform apply -lock=false --auto-approve
     - name: Upload text file as artifact
-        uses: actions/upload-artifact@v4
-        with:
+      uses: actions/upload-artifact@v4
+      with:
           name: my-text-artifact
           path: ansible-inventory.txt
 
