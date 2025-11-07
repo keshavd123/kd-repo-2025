@@ -2,7 +2,7 @@ name: kd job
 #trigger point
 on:
   push:
-    branches: ["dryrun-aws-kd"]
+    branches: ["main"]
     paths-ignore:
       - "REDME.md"
       - "terraform.tfstate"
@@ -16,7 +16,7 @@ jobs:
     - name: taking code from my repo
       uses: actions/checkout@v5
       with:
-        ref: dryrun-aws-kd
+        ref: main
 #installing tearraform
     - name: installing terraform
       uses: hashicorp/setup-terraform@v3
@@ -81,7 +81,7 @@ jobs:
       run: aws s3 ls
 # downloading articats for ansible
     - name: downloading articats
-      uses: actions/download-articat@v5
+      uses: actions/download-artifact@v4
       with:
         name: kd-text-artifact
 #listing artifacts
