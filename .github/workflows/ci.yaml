@@ -47,8 +47,8 @@ jobs:
     - name: Upload text file as artifact
       uses: actions/upload-artifact@v4
       with:
-          name: my-text-artifact
-          path: ansible-inventory.txt
+          name: kd-text-artifact
+          path: modules/ec2/ansible-inventory.txt
 
   infra-destroy-job:
     needs: infra-deploy-job 
